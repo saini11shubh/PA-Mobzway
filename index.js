@@ -3,7 +3,7 @@ const { response } = require('express');
 const express = require('express');
 const { restart } = require('nodemon');
 const app = express();
-const port = process.env.port || 3000;
+const port = process.env.PORT || 3000;
 const redis = require('redis')
 const client = redis.createClient();
 const mongoose = require("./conn.js");
@@ -26,7 +26,7 @@ app.get("/", async (req, res) => {
     }).catch(err => {
         console.log(err);
     })
-    
+
     let keyname = 'postData';                   //set value in redis through key
     let getredisvalue = await client.get(keyname);    //get value from redis through key
     let responseDataArray = '';                       //create Array and show response
